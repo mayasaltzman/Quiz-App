@@ -2,6 +2,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import { Route, Routes } from "react-router-dom"
 import Home from './components/pages/Home'
+import Quiz from './components/pages/Quiz'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       {/* react router routes */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Quiz" element={<Quiz />} />
       </Routes>
 
 
