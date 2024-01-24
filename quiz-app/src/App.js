@@ -10,8 +10,6 @@ function App() {
       {/* including navbar */}
       <NavBar />
 
-      <h1>Quiz</h1>
-
       {/* react router routes */}
       <Routes>
         <Route path="/" element={<Home />} />
