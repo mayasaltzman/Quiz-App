@@ -1,0 +1,35 @@
+#body{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.questions{
+    margin: 20px auto;
+
+    background-color: rgb(247, 100, 100);
+    padding: 16px;
+    border-radius: 16px;
+    width: 80%;
+    height: auto;
+    color: rgb(254, 238, 148);
+}
+
+.questions h3{
+    color: white;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    margin: 7px auto;
+    background-color: rgb(57, 56, 56);
+    padding: 16px;
+    border: 3px solid wheat ;
+    border-radius: 16px;
+    width: 60%;
+}
+
