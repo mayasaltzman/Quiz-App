@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Quiz.css"
 
 function Quiz() {
+    const [getResults, setResults] = useState(false);
+    const [score, setScore] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+
+    // make array of questions here
     return (
         <div id='body'>
             <h1>University of Guelph Quiz</h1>
-
-            <h2>Current Score</h2>
 
             <h2>Time Elapsed</h2>
 
@@ -81,6 +84,12 @@ function Quiz() {
 
 
             </div>
+
+            <div className='results'>
+                <h2>Your results</h2>
+                <button>Restart Quiz</button>
+            </div>
+
 
         </div>
     )

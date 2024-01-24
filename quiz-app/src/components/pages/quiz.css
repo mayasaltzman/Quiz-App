@@ -33,3 +33,7 @@ li{
     width: 60%;
 }
 
+li:focus{
+    background-color: rgb(102, 102, 102);
+}
+
