@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Quiz.css"
 
 function Quiz() {
     const [getResults, setResults] = useState(false);
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [time, setTime] = useState(0);
+    const [timeRunning, setTimeRunning] = useState(true)
 
     // array of questions
     const questions = [
@@ -89,6 +91,7 @@ function Quiz() {
     //helper function to end game if user wants to finish quiz
     const finishQuiz = () => {
         setResults(true);
+        setTime(0);
     }
 
     //helper function to reset quiz
@@ -97,7 +100,22 @@ function Quiz() {
         setResults(false);
         setCurrentQuestion(0);
         setScore(0);
+        setTimeRunning(true)
     }
+
+    // timer function
+    useEffect(() => {
+        let interval;
+        if (timeRunning) {
+            interval = setInterval(() => {
+                setTime((prevTime) => prevTime + 10);
+            }, 10);
+        }
+        else if (timeRunning) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [timeRunning])
 
 
     return (
@@ -118,7 +136,10 @@ function Quiz() {
                 // questions
                 <div className='question-card'>
 
-                    <h2>Time Elapsed</h2>
+                    <h2>Time Elapsed:
+                        <span> {("0" + Math.floor((time / 6000) % 60))}:</span>
+                        <span>{("0" + Math.floor((time / 1000) % 60))}</span>
+                    </h2>
 
                     <div className='questions'>
                         {/* dyncamically get questions based on array of questions and opject */}
