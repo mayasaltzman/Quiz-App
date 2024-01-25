@@ -5,7 +5,6 @@ function Quiz() {
     const [getResults, setResults] = useState(false);
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    var percentage = 0;
 
     // array of questions
     const questions = [
