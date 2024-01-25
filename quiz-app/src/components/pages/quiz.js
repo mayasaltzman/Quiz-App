@@ -5,6 +5,7 @@ function Quiz() {
     const [getResults, setResults] = useState(false);
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    var percentage = 0;
 
     // array of questions
     const questions = [
@@ -79,7 +80,9 @@ function Quiz() {
             console.log(score)
         }
         else {
-            setScore(score - 1);
+            if (score != 0) {
+                setScore(score - 1);
+            }
         }
 
     }
@@ -90,24 +93,33 @@ function Quiz() {
     }
 
     //helper function to reset quiz
+    const restartQuiz = () => {
+        // reset scores
+        setResults(false);
+        setCurrentQuestion(0);
+        setScore(0);
+    }
 
 
     return (
         <div id='body'>
             <h1>University of Guelph Quiz</h1>
 
-            <h2>Time Elapsed</h2>
-
             {/* operator that displays question cards or results  */}
             {getResults ?
                 // results
                 <div className='results'>
                     <h2>Your results</h2>
-                    <button >Restart Quiz</button>
+                    <h3>You got {score} out of {questions.length} correct ({((score / questions.length) * 100)}%)</h3>
+                    <h3>You completed the quiz in ___ time</h3>
+                    {/* user can restart quiz */}
+                    <button onClick={() => restartQuiz()}>Restart Quiz</button>
                 </div>
                 :
                 // questions
                 <div className='question-card'>
+
+                    <h2>Time Elapsed</h2>
 
                     <div className='questions'>
                         {/* dyncamically get questions based on array of questions and opject */}
@@ -124,6 +136,7 @@ function Quiz() {
                         {/* user can navigate from question to question */}
                         <button onClick={() => previousQuestion()}>Previous</button>
                         <button onClick={() => nextQuestion()}>Next</button>
+                        {/* user can finish quiz */}
                         <button onClick={() => finishQuiz()} >Finish</button>
                     </div>
 
