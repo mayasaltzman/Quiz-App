@@ -55,6 +55,29 @@ function Quiz() {
             ]
         }
     ]
+
+    //helper functions to switch from question to question
+    // presses next question
+    const nextQuestion = () => {
+        setCurrentQuestion(currentQuestion + 1)
+    }
+
+    //presses previous questions
+    const previousQuestion = () => {
+        setCurrentQuestion(currentQuestion - 1)
+    }
+
+    //presses prev question
+
+    //helper function to store if question is correct
+    const optionClicked = (isCorrect) => {
+        if (isCorrect) {
+            setScore(score + 1);
+        }
+    }
+
+    //helper function to end game if user wants to finish quiz
+
     return (
         <div id='body'>
             <h1>University of Guelph Quiz</h1>
@@ -72,10 +95,13 @@ function Quiz() {
                         {/* map current question to the options for that questio  */}
                         {questions[currentQuestion].options.map((option) => {
                             return (
-                                <li key={option.id}>{option.text}</li>
+                                <li onClick={() => optionClicked(option.isCorrect)} key={option.id}>{option.text}</li>
                             );
                         })}
                     </ul>
+                    <button onClick={() => previousQuestion()}>Previous</button>
+                    <button onClick={() => nextQuestion()}>Next</button>
+                    <button>Finish</button>
                 </div>
 
 
