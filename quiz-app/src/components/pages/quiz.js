@@ -103,7 +103,7 @@ function Quiz() {
         setTimeRunning(true)
     }
 
-    // timer function
+    // timer function got this from a youtube video
     useEffect(() => {
         let interval;
         if (timeRunning) {
