@@ -6,7 +6,55 @@ function Quiz() {
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
 
-    // make array of questions here
+    // array of questions
+    const questions = [
+        {
+            text: "What is the University of Guelph's mascot?",
+            options: [
+                { id: 0, text: "Gryphon", isCorrect: true },
+                { id: 1, text: "Lion", isCorrect: false },
+                { id: 2, text: "Husky", isCorrect: false },
+                { id: 3, text: "Panther", isCorrect: false },
+            ]
+
+        },
+        {
+            text: "What year was Johnston Hall built?",
+            options: [
+                { id: 0, text: "1908", isCorrect: false },
+                { id: 1, text: "1951", isCorrect: false },
+                { id: 2, text: "1932", isCorrect: true },
+                { id: 3, text: "1927", isCorrect: false },
+            ]
+        },
+        {
+            text: "Who is the President of the University of Guelph?",
+            options: [
+                { id: 0, text: "Gwen Chapman", isCorrect: false },
+                { id: 1, text: "Dr. Charlotte Yates", isCorrect: true },
+                { id: 2, text: "Sharmilla Rasheed", isCorrect: false },
+                { id: 3, text: "Rene Van Acker", isCorrect: false },
+            ]
+        },
+        {
+            text: "How many acres is the Arboretum?",
+            options: [
+                { id: 0, text: "400 acres", isCorrect: true },
+                { id: 1, text: "80 acres", isCorrect: false },
+                { id: 2, text: "700 acres", isCorrect: false },
+                { id: 3, text: "100 acres", isCorrect: false },
+            ]
+        },
+        {
+            text: "What is the oldest building on the University of Guelph Campus?",
+            options: [
+                { id: 0, text: "Drew Hall", isCorrect: false },
+                { id: 1, text: "Mills Hall", isCorrect: false },
+                { id: 2, text: "Alumni House", isCorrect: true },
+                { id: 3, text: "Bullring", isCorrect: false },
+            ]
+        }
+    ]
     return (
         <div id='body'>
             <h1>University of Guelph Quiz</h1>
@@ -15,70 +63,18 @@ function Quiz() {
 
             {/* questions */}
             <div className='question-card'>
-                <div className='questions'>
-                    {/* question 1 */}
-                    <h2>Question 1 out of 5</h2>
-                    <h3>What is the University of Guelph's mascot?</h3>
-                    <ul>
-                        {/* correct answer */}
-                        <li>Gryphon</li>
-                        <li>Lion</li>
-                        <li>Husky</li>
-                        <li>Panther</li>
-                    </ul>
-                </div>
 
                 <div className='questions'>
-                    {/* question 2 */}
-                    <h2>Question 2 out of 5</h2>
-                    <h3>What year was Johnston Hall built?</h3>
+                    {/* dyncamically get questions based on array of questions and opject */}
+                    <h2>Question {currentQuestion + 1} out of {questions.length}</h2>
+                    <h3 className='question-text'>{questions[currentQuestion].text}</h3>
                     <ul>
-                        <li>1908</li>
-                        <li>1951</li>
-                        {/* correct answer */}
-                        <li>1932</li>
-                        <li>1927</li>
-                    </ul>
-                </div>
-
-                <div className='questions'>
-                    {/* question 3 */}
-                    <h2>Question 3 out of 5</h2>
-                    <h3>Who is the President of the University of Guelph?</h3>
-                    <ul>
-                        <li>Gwen Chapman</li>
-                        {/* correct answer */}
-                        <li>Dr. Charlotte Yates</li>
-                        <li>Sharmilla Rasheed</li>
-                        <li>Rene Van Acker</li>
-                    </ul>
-
-                </div>
-
-                <div className='questions'>
-                    {/* question 4 */}
-                    <h2>Question 4 out of 5</h2>
-                    <h3>How many acres is the Arboretum?</h3>
-                    <ul>
-                        {/* correct answer */}
-                        <li>400 acres</li>
-                        <li>80 acres</li>
-                        <li>700 acres</li>
-                        <li>100 acres</li>
-                    </ul>
-                </div>
-
-                <div className='questions'>
-                    {/* question 5 */}
-                    <h2>Question 5 out of 5</h2>
-                    <h3>What is the oldest building on the University of Guelph Campus?</h3>
-                    <ul>
-
-                        <li>Drew Hall</li>
-                        <li>Mills Hall</li>
-                        {/* correct answer */}
-                        <li>Alumni House</li>
-                        <li>Bullring</li>
+                        {/* map current question to the options for that questio  */}
+                        {questions[currentQuestion].options.map((option) => {
+                            return (
+                                <li key={option.id}>{option.text}</li>
+                            );
+                        })}
                     </ul>
                 </div>
 
