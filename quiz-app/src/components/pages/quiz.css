@@ -38,6 +38,15 @@ li:focus {
     background-color: rgb(102, 102, 102);
 }
 
+.questions button {
+    background-color: wheat;
+    color: rgb(57, 56, 56);
+    border: 3px solid rgb(57, 56, 56);
+    border-radius: 10px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
 .results {
     margin: 20px auto;
     background-color: rgb(247, 100, 100);
