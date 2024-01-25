@@ -59,24 +59,38 @@ function Quiz() {
     //helper functions to switch from question to question
     // presses next question
     const nextQuestion = () => {
-        setCurrentQuestion(currentQuestion + 1)
+        if (currentQuestion + 1 < questions.length) {
+            setCurrentQuestion(currentQuestion + 1)
+        }
     }
 
     //presses previous questions
     const previousQuestion = () => {
-        setCurrentQuestion(currentQuestion - 1)
-    }
+        if (currentQuestion + 1 > 1) {
+            setCurrentQuestion(currentQuestion - 1)
 
-    //presses prev question
+        }
+    }
 
     //helper function to store if question is correct
     const optionClicked = (isCorrect) => {
         if (isCorrect) {
             setScore(score + 1);
+            console.log(score)
         }
+        else {
+            setScore(score - 1);
+        }
+
     }
 
     //helper function to end game if user wants to finish quiz
+    const finishQuiz = () => {
+        setResults(true);
+    }
+
+    //helper function to reset quiz
+
 
     return (
         <div id='body'>
@@ -84,33 +98,41 @@ function Quiz() {
 
             <h2>Time Elapsed</h2>
 
-            {/* questions */}
-            <div className='question-card'>
+            {/* operator that displays question cards or results  */}
+            {getResults ?
+                // results
+                <div className='results'>
+                    <h2>Your results</h2>
+                    <button >Restart Quiz</button>
+                </div>
+                :
+                // questions
+                <div className='question-card'>
 
-                <div className='questions'>
-                    {/* dyncamically get questions based on array of questions and opject */}
-                    <h2>Question {currentQuestion + 1} out of {questions.length}</h2>
-                    <h3 className='question-text'>{questions[currentQuestion].text}</h3>
-                    <ul>
-                        {/* map current question to the options for that questio  */}
-                        {questions[currentQuestion].options.map((option) => {
-                            return (
-                                <li onClick={() => optionClicked(option.isCorrect)} key={option.id}>{option.text}</li>
-                            );
-                        })}
-                    </ul>
-                    <button onClick={() => previousQuestion()}>Previous</button>
-                    <button onClick={() => nextQuestion()}>Next</button>
-                    <button>Finish</button>
+                    <div className='questions'>
+                        {/* dyncamically get questions based on array of questions and opject */}
+                        <h2>Question {currentQuestion + 1} out of {questions.length}</h2>
+                        <h3 className='question-text'>{questions[currentQuestion].text}</h3>
+                        <ul>
+                            {/* map current question to the options for that questio  */}
+                            {questions[currentQuestion].options.map((option) => {
+                                return (
+                                    <li onClick={() => optionClicked(option.isCorrect)} key={option.id}>{option.text}</li>
+                                );
+                            })}
+                        </ul>
+                        {/* user can navigate from question to question */}
+                        <button onClick={() => previousQuestion()}>Previous</button>
+                        <button onClick={() => nextQuestion()}>Next</button>
+                        <button onClick={() => finishQuiz()} >Finish</button>
+                    </div>
+
+
                 </div>
 
 
-            </div>
+            }
 
-            <div className='results'>
-                <h2>Your results</h2>
-                <button>Restart Quiz</button>
-            </div>
 
 
         </div>
