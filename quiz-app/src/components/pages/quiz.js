@@ -79,7 +79,7 @@ function Quiz() {
             console.log(score)
         }
         else {
-            if (score != 0) {
+            if (score !== 0) {
                 setScore(score - 1);
             }
         }
@@ -112,7 +112,7 @@ function Quiz() {
                     <h3>You got {score} out of {questions.length} correct ({((score / questions.length) * 100)}%)</h3>
                     <h3>You completed the quiz in ___ time</h3>
                     {/* user can restart quiz */}
-                    <button onClick={() => restartQuiz()}>Restart Quiz</button>
+                    <button onClick={() => restartQuiz()} className='navigation-buttons'>Restart Quiz</button>
                 </div>
                 :
                 // questions
@@ -133,10 +133,10 @@ function Quiz() {
                             })}
                         </ul>
                         {/* user can navigate from question to question */}
-                        <button onClick={() => previousQuestion()}>Previous</button>
-                        <button onClick={() => nextQuestion()}>Next</button>
+                        <button onClick={() => previousQuestion()} className='navigation-buttons'>Previous</button>
+                        <button onClick={() => nextQuestion()} className='navigation-buttons'>Next</button>
                         {/* user can finish quiz */}
-                        <button onClick={() => finishQuiz()} >Finish</button>
+                        <button onClick={() => finishQuiz()} className='navigation-buttons'>Finish</button>
                     </div>
 
 

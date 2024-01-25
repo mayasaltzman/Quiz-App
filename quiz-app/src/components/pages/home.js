@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import "./Home.css"
 
 function Home() {
     return (
-        <div>
+        <div className='home-body'>
             <h1>University of Guelph Quiz</h1>
             <h2>Can you answer these trivia questions about the University of Guelph?</h2>
-            <Link to = "/Quiz"><button>Start Quiz</button></Link>
+            <img id='home-photo' src='uni-guelph.jpg' alt='johnston hall from above'></img>
+            <Link to = "/Quiz"><button id='start'>Start Quiz</button></Link>
         </div>
     )
 
