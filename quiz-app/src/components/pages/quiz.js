@@ -7,6 +7,7 @@ function Quiz() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [time, setTime] = useState(0);
     const [timeRunning, setTimeRunning] = useState(true)
+    var seconds = 0, minutes = 0
 
     // array of questions
     const questions = [
@@ -89,9 +90,15 @@ function Quiz() {
     }
 
     //helper function to end game if user wants to finish quiz
-    const finishQuiz = () => {
+    const finishQuiz = (sec, min) => {
+        seconds = sec
+        console.log(seconds)
+        minutes = min
         setResults(true);
-        setTime(0);
+        return (
+            sec, min
+
+        );
     }
 
     //helper function to reset quiz
@@ -101,6 +108,7 @@ function Quiz() {
         setCurrentQuestion(0);
         setScore(0);
         setTimeRunning(true)
+        setTime(0);
     }
 
     // timer function got this from a youtube video
@@ -128,7 +136,7 @@ function Quiz() {
                 <div className='results'>
                     <h2>Your results</h2>
                     <h3>You got {score} out of {questions.length} correct ({((score / questions.length) * 100)}%)</h3>
-                    <h3>You completed the quiz in ___ time</h3>
+                    <h3>You completed the quiz in {seconds} seconds and {minutes} minutes</h3>
                     {/* user can restart quiz */}
                     <button onClick={() => restartQuiz()} className='navigation-buttons'>Restart Quiz</button>
                 </div>
@@ -137,7 +145,7 @@ function Quiz() {
                 <div className='question-card'>
 
                     <h2>Time Elapsed:
-                        <span> {("0" + Math.floor((time / 6000) % 60))}:</span>
+                        <span> {("0" + Math.floor((time / 60000) % 60))}:</span>
                         <span>{("0" + Math.floor((time / 1000) % 60))}</span>
                     </h2>
 
@@ -157,7 +165,7 @@ function Quiz() {
                         <button onClick={() => previousQuestion()} className='navigation-buttons'>Previous</button>
                         <button onClick={() => nextQuestion()} className='navigation-buttons'>Next</button>
                         {/* user can finish quiz */}
-                        <button onClick={() => finishQuiz()} className='navigation-buttons'>Finish</button>
+                        <button onClick={() => finishQuiz(Math.floor((time / 60000) % 60), Math.floor((time / 1000) % 60))} className='navigation-buttons'>Finish</button>
                     </div>
 
 

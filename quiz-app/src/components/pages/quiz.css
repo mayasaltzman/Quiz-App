@@ -36,6 +36,7 @@ li {
 
 li:hover {
     background-color: rgb(102, 102, 102);
+    cursor: pointer;
 }
 
 .questions button {
@@ -74,4 +75,5 @@ li:hover {
 
 .navigation-buttons:hover{
     transform: scale(1.05);
+    cursor: pointer;
 }
