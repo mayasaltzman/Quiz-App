@@ -7,8 +7,7 @@ function Quiz() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [time, setTime] = useState(0);
     const [timeRunning, setTimeRunning] = useState(true);
-    const [clicked, setClicked] = useState(false);
-    const [count, setCount] = useState(0);
+    const [clickedOptions, setClickedOptions] = useState([]);
     var seconds = 0, minutes = 0
 
     // array of questions
@@ -78,11 +77,17 @@ function Quiz() {
     }
 
     //helper function to store if question is correct
-    const optionClicked = (isCorrect) => {
+    const optionClicked = (isCorrect, optionID) => {
 
-        if (isCorrect == true) {
-            setScore(score + 1);
+        if (!clickedOptions.includes(optionID)) {
+            setClickedOptions([clickedOptions, optionID])
+
+            if (isCorrect === true) {
+                setScore(score + 1);
+            }
         }
+
+        console.log(score)
 
         isCorrect = false;
     }
@@ -109,8 +114,6 @@ function Quiz() {
         setScore(0);
         setTimeRunning(true)
         setTime(0);
-        setClicked(false)
-        setCount(0)
     }
 
     // timer function got this from a youtube video
@@ -126,7 +129,6 @@ function Quiz() {
         }
         return () => clearInterval(interval);
     }, [timeRunning])
-
 
     return (
         <div id='body'>
@@ -159,7 +161,7 @@ function Quiz() {
                             {/* map current question to the options for that questio  */}
                             {questions[currentQuestion].options.map((option) => {
                                 return (
-                                    <li onClick={() => optionClicked(option.isCorrect)} key={option.id}>{option.text}</li>
+                                    <li onClick={() => optionClicked(option.isCorrect, option.id)} key={option.id}>{option.text}</li>
                                 );
                             })}
                         </ul>
