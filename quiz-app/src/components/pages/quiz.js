@@ -6,7 +6,9 @@ function Quiz() {
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [time, setTime] = useState(0);
-    const [timeRunning, setTimeRunning] = useState(true)
+    const [timeRunning, setTimeRunning] = useState(true);
+    const [clicked, setClicked] = useState(false);
+    const [count, setCount] = useState(0);
     var seconds = 0, minutes = 0
 
     // array of questions
@@ -77,17 +79,15 @@ function Quiz() {
 
     //helper function to store if question is correct
     const optionClicked = (isCorrect) => {
-        if (isCorrect) {
+
+        if (isCorrect == true) {
             setScore(score + 1);
-            console.log(score)
-        }
-        else {
-            if (score !== 0) {
-                setScore(score - 1);
-            }
         }
 
+        isCorrect = false;
     }
+
+
 
     //helper function to end game if user wants to finish quiz
     const finishQuiz = (sec, min) => {
@@ -109,6 +109,8 @@ function Quiz() {
         setScore(0);
         setTimeRunning(true)
         setTime(0);
+        setClicked(false)
+        setCount(0)
     }
 
     // timer function got this from a youtube video
