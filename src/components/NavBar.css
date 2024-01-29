@@ -1,0 +1,10 @@
+.title {
+    color: black;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+/* not working right now */
+.title :hover {
+    transform: scale(1.05);
+}
