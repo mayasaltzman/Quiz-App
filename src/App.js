@@ -12,7 +12,7 @@ function App() {
       <NavBar />
 
       {/* react router routes */}
-      <Routes basename="/">
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Quiz" element={<Quiz />} />
       </Routes>
